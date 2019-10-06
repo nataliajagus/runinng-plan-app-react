@@ -20,6 +20,14 @@ const Button = styled.button`
         `
     )}
 
+     ${({stop}) => (
+        stop && css`
+            color: red;
+            background-color: #fff;
+            border: 1px solid red;
+        `
+    )}
+
 `;
 
 export default Button;

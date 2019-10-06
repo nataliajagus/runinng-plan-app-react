@@ -12,6 +12,7 @@ const WeeksWrapper = styled.div`
     margin-top: -50px;
     z-index: 2;
     display: flex;
+    max-width: 800px;
 `;
 
 const Weeks = () => (

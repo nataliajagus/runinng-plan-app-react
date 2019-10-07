@@ -11,7 +11,7 @@ const Root = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Weeks} />
-      <Route path="/exercise" component={Exercise} />
+      <Route path="/exercise/:id" component={Exercise} />
     </Switch>
   </BrowserRouter>
   </>

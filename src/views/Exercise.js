@@ -62,6 +62,11 @@ class Exercise extends Component {
     }
   };
 
+  componentDidMount() {
+    console.log(this.props.match.params.id);
+    this.setState({ timerTime: this.props.match.params.id })
+  }
+
   render() {
     const { timerTime, timerStart, timerOn } = this.state;
     let seconds = ("0" + (Math.floor((timerTime / 1000) % 60) % 60)).slice(-2);

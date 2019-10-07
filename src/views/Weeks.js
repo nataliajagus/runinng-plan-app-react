@@ -5,6 +5,7 @@ import AppTitle from "components/AppTitle/AppTitle";
 import Wrapper from "components/Wrapper/Wrapper";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
+import { settings } from "settings";
 
 const WeeksWrapper = styled.div`
   flex-flow: row;
@@ -18,8 +19,6 @@ const WeeksWrapper = styled.div`
 
 class Weeks extends Component {
 
-
-
   render() {
     return (
       <Wrapper>
@@ -27,16 +26,11 @@ class Weeks extends Component {
           <AppTitle />
         </Header>
         <WeeksWrapper>
-          <Link to={{ pathname: '/exercise/1000' }}><WeekButton week="1" /></Link>
-          <Link to={{ pathname: '/exercise/2000' }}><WeekButton week="2" /></Link>
-          <Link to={{ pathname: '/exercise/3000' }}><WeekButton week="3" /></Link>
-          <Link to={{ pathname: '/exercise/4000' }}><WeekButton week="4" /></Link>
-          <Link to={{ pathname: '/exercise/5000' }}><WeekButton week="5" /></Link>
-          <Link to={{ pathname: '/exercise/6000' }}><WeekButton week="6" /></Link>
-          <Link to={{ pathname: '/exercise/7000' }}><WeekButton week="7" /></Link>
-          <Link to={{ pathname: '/exercise/8000' }}><WeekButton week="8" /></Link>
-          <Link to={{ pathname: '/exercise/9000' }}><WeekButton week="9" /></Link>
-          <Link to={{ pathname: '/exercise/10000' }}><WeekButton week="10" /></Link>
+
+        {settings.map((item) => (
+          <Link to={{ pathname: `/exercise/${item.seconds}` }}><WeekButton week={item.week} /></Link>
+        ))}
+        
         </WeeksWrapper>
       </Wrapper>
     );

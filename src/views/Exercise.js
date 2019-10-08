@@ -27,44 +27,79 @@ class Exercise extends Component {
   state = {
     timerOn: false,
     timerStart: 0,
-    timerTime: 10000
+    timerTime: 0,
+    isRunning: true,
+    isWalking: false,
+    run: 0,
+    walk: 0,
+    rounds: 0,
+    mode: "run"
   };
 
+  
+
   startTimer = () => {
+    
     this.setState({
       timerOn: true,
       timerTime: this.state.timerTime,
       timerStart: this.state.timerTime
     });
-    this.timer = setInterval(() => {
-      const newTime = this.state.timerTime - 10;
-      if (newTime >= 0) {
-        this.setState({
-          timerTime: newTime
-        });
-      } else {
-        clearInterval(this.timer);
-        this.setState({ timerOn: false });
-        alert("Countdown ended");
-      }
-    }, 10);
+
+    if(this.state.isRunning) {
+      this.timer = setInterval(() => {
+        const newTime = this.state.timerTime - 10;
+        if (newTime >= 0) {
+          this.setState({
+            timerTime: newTime
+          });
+        } else {
+          clearInterval(this.timer);
+          this.setState({ timerOn: false, isRunning: false, isWalking: true });
+        }
+      }, 10);
+    }
+
   };
+
+  componentDidUpdate() {
+    if(!this.state.isRunning && this.state.isWalking) {
+      this.setState({ timerOn: true, timerTime: this.state.walk, isWalking: false, mode: "walk" });
+      this.timer2 = setInterval(() => {
+        const newTime = this.state.timerTime - 10;
+        if (newTime >= 0) {
+          this.setState({
+            timerTime: newTime
+          });
+        } else {
+          clearInterval(this.timer2);
+          this.setState({ timerOn: false });
+          this.setState({ isRunning: false });
+          alert('ended!');
+        }
+      }, 10);
+    }
+  }
 
   stopTimer = () => {
     clearInterval(this.timer);
+    clearInterval(this.timer2);
     this.setState({ timerOn: false });
   };
+
   resetTimer = () => {
     if (this.state.timerOn === false) {
       this.setState({
-        timerTime: this.state.timerStart
+        timerTime: this.state.run
       });
     }
   };
 
   componentDidMount() {
-    console.log(this.props.match.params.id);
-    this.setState({ timerTime: this.props.match.params.id })
+    const { run, walk, rounds} = this.props.location.state;
+
+    this.setState({ run: run, walk: walk, rounds: rounds, timerTime: run });
+
   }
 
   render() {
@@ -76,8 +111,8 @@ class Exercise extends Component {
       <Wrapper>
         <Header>
           <WeekTitle>Week 1</WeekTitle>
-          <Subtitle>Time left: 30:00</Subtitle>
-          <Timer minutes={minutes} seconds={seconds} />
+          <Subtitle>Time left: {minutes} : {seconds}</Subtitle>
+          <Timer minutes={minutes} seconds={seconds} mode={this.state.mode} />
         </Header>
         <div>
           {timerOn === false &&

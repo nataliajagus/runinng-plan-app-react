@@ -32,14 +32,14 @@ const Mode = styled.span`
   color: #1f5aac;
   text-align: center;
 `;
-
+ 
 const Timer = props => {
   return (
     <StyledContainer>
       <Time>
         {props.minutes} : {props.seconds}
       </Time>
-      <Mode>run</Mode>
+      <Mode>{props.mode}</Mode>
     </StyledContainer>
   );
 };

@@ -28,7 +28,7 @@ class Weeks extends Component {
         <WeeksWrapper>
 
         {settings.map((item) => (
-          <Link to={{ pathname: '/exercise', state: { run: item.run, walk: item.walk, rounds: item.rounds } }}><WeekButton week={item.week} /></Link>
+          <Link to={{ pathname: '/exercise', state: { run: item.run, walk: item.walk, rounds: item.rounds, week: item.week } }} key={item.week}><WeekButton week={item.week} /></Link>
         ))}
 
         </WeeksWrapper>

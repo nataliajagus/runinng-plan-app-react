@@ -35,7 +35,8 @@ class Exercise extends Component {
     run: 0,
     walk: 0,
     rounds: 0,
-    mode: "run"
+    mode: "run",
+    week: 1
   };
 
   startTimer = () => {
@@ -122,14 +123,15 @@ class Exercise extends Component {
   };
 
   componentDidMount() {
-    const { run, walk, rounds } = this.props.location.state;
+    const { run, walk, rounds, week } = this.props.location.state;
 
     this.setState({
       run: run,
       walk: walk,
       rounds: rounds,
       timerTime: run,
-      totalTime: (run + walk) * rounds
+      totalTime: (run + walk) * rounds,
+      week: week
     });
   }
 
@@ -138,6 +140,10 @@ class Exercise extends Component {
       clearInterval(this.runInterval);
       clearInterval(this.walkInterval);
     }
+  }
+
+  componentWillUnmount() {
+    this.stopTimer();
   }
 
   render() {
@@ -152,7 +158,7 @@ class Exercise extends Component {
     return (
       <Wrapper>
         <Header>
-          <WeekTitle>Week 1</WeekTitle>
+          <WeekTitle>Week {this.state.week}</WeekTitle>
           <Subtitle>
             Time left: {minutesTotal}:{secondsTotal}
           </Subtitle>

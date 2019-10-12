@@ -1,10 +1,9 @@
 export const settings = [
     {   
         week: 1,
-        seconds: 1000,
-        run: 15000,
+        run: 10000,
         walk: 5000,
-        rounds: 3
+        rounds: 2
     },
     {
         week: 2,

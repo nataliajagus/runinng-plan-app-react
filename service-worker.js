@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/runinng-plan-app-react/precache-manifest.fc3c90af2eb8450c273a40dad82e6238.js"
+  "/runinng-plan-app-react/precache-manifest.296edecbee30037bba0fad90a37031a7.js"
 );
 
 self.addEventListener('message', (event) => {

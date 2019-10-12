@@ -21,3 +21,5 @@ Week | Run | Walk | Repeat
 
 
 Choose your weeek and start the exercise!
+
+Online version here: https://nataliajagus.github.io/runinng-plan-app-react/

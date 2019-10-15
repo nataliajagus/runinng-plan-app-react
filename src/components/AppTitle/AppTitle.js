@@ -15,12 +15,21 @@ const StyledHeading = styled.h2`
     text-align: center;
 `;
 
+const StyledSubheading = styled.span`
+    color: #fff;
+    margin-top: -10px;
+    margin-bottom: 50px;
+    padding: 0 50px;
+    text-align: center;
+`;
+
 
 
 const AppTitle = () => (
     <>
         <Logo />
         <StyledHeading>10 Weeks Jogging Plan App</StyledHeading>
+        <StyledSubheading>choose your week and start the exercise!</StyledSubheading>
     </>
 )
 

@@ -28,6 +28,15 @@ const Button = styled.button`
         `
     )}
 
+    ${({submit}) => (
+        submit && css`
+            color: white;
+            background-color:#096db2;
+            font-weight: bold;
+            margin: 50px 0;
+        `
+    )}
+
 `;
 
 export default Button;

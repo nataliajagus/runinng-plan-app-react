@@ -9,11 +9,12 @@
     border-radius: 15px;
     border: 1px solid #1F5AAC;
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 900;
 }
 
 .formInput::placeholder {
     font-size: 20px;
+    line-height: 80px;
     font-weight: 300;
     text-align: center;
 }
@@ -31,4 +32,9 @@
 
 .hidden {
     display: none;
+}
+
+.formInfo {
+    text-align: center;
+    margin-bottom: -20px;
 }

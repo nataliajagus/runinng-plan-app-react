@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import { settings } from "settings";
 import Form from "components/Form/Form";
 import Button from "components/Button/Button";
+import ValidationInfo from "components/ValidationInfo/ValidationInfo";
 
 const WeeksWrapper = styled.div`
   flex-flow: row;
@@ -20,6 +21,12 @@ const WeeksWrapper = styled.div`
   margin-bottom: 50px;
 `;
 
+const InfoWrapper = styled.div`
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+`;
+
 class Weeks extends Component {
 
   state = {
@@ -27,18 +34,19 @@ class Weeks extends Component {
     runSeconds: 0,
     walkMinutes: 0,
     walkSeconds: 0,
-    rounds: 0
+    rounds: 0,
+    isValid: null
   }
 
   createExercise = (e) => {
     e.preventDefault();
-    this.setState({ runMinutes: e.target[0].value, runSeconds: e.target[1].value, walkMinutes: e.target[2].value, walkSeconds: e.target[3].value, rounds: e.target[4].value });
+    this.setState({ runMinutes: e.target[0].value, runSeconds: e.target[1].value, walkMinutes: e.target[2].value, walkSeconds: e.target[3].value, rounds: e.target[4].value, isValid: true });
     console.log(this.state);
 
-    if(!e.target[4].value) {
-        alert('add data!');  
+    if(!e.target[4].value || (e.target[0].value + e.target[1].value + e.target[2].value + e.target[3].value) == 0) {
+        this.setState({ isValid: false })
     } 
-    
+
 }
 
 componentDidUpdate() {
@@ -46,6 +54,9 @@ componentDidUpdate() {
 }
 
   render() {
+
+    
+
     return (
       <Wrapper>
         <Header>
@@ -60,8 +71,8 @@ componentDidUpdate() {
         </WeeksWrapper>
         <h3>or create your own exercise:</h3>
         <Form submitFn={this.createExercise} state={this.state} />
-
-        {this.state.rounds != 0 && (this.state.runMinutes + this.state.runSeconds + this.state.walkMinutes + this.state.walkSeconds) != 0 && ( <Link  to={{ pathname: '/exercise', state: { run: (this.state.runMinutes * 60 * 1000) + (this.state.runSeconds * 1000), walk: (this.state.walkMinutes * 60 * 1000) + (this.state.walkSeconds * 1000), rounds: this.state.rounds, week: 0 } }}><Button htmlType="submit" submit>Continue</Button></Link> )}
+          
+        {this.state.rounds != 0 && (this.state.runMinutes + this.state.runSeconds + this.state.walkMinutes + this.state.walkSeconds) != 0 && ( <InfoWrapper><ValidationInfo success>Alright! Everything is set! :)</ValidationInfo><Link  to={{ pathname: '/exercise', state: { run: (this.state.runMinutes * 60 * 1000) + (this.state.runSeconds * 1000), walk: (this.state.walkMinutes * 60 * 1000) + (this.state.walkSeconds * 1000), rounds: this.state.rounds, week: 0 } }}><Button htmlType="submit" submit>Continue</Button></Link></InfoWrapper> )}
       </Wrapper>
     );
   }

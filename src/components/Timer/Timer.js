@@ -37,7 +37,7 @@ const Timer = props => {
   return (
     <StyledContainer>
       <Time>
-        {props.minutes}:{props.seconds}
+        {props.hours > 0 && props.hours + ':'}{props.minutes}:{props.seconds}
       </Time>
       <Mode>{props.mode}</Mode>
     </StyledContainer>

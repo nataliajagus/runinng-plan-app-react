@@ -45,6 +45,8 @@ class Exercise extends Component {
       timerStart: this.state.totalTime
     });
 
+    console.log(this.state);
+
     const run = callback => {
       this.setState({ mode: "run", timerOn: true });
 
@@ -150,19 +152,19 @@ class Exercise extends Component {
     const { timerTime, timerStart, timerOn, totalTime } = this.state;
     let seconds = ("0" + (Math.floor((timerTime / 1000) % 60) % 60)).slice(-2);
     let minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
+    let hours = ("0" + Math.floor((timerTime / 3600000) % 60)).slice(-2);
     let minutesTotal = ("0" + Math.floor((totalTime / 60000) % 60)).slice(-2);
-    let secondsTotal = ("0" + (Math.floor((totalTime / 1000) % 60) % 60)).slice(
-      -2
-    );
+    let secondsTotal = ("0" + (Math.floor((totalTime / 1000) % 60) % 60)).slice(-2);
+    let hoursTotal = ("0" + Math.floor((totalTime / 3600000) % 60)).slice(-2);
 
     return (
       <Wrapper>
         <Header>
-          <WeekTitle>Week {this.state.week}</WeekTitle>
+        {this.state.week > 0 && ( <WeekTitle>Week {this.state.week}</WeekTitle> )}
           <Subtitle>
-            Time left: {minutesTotal}:{secondsTotal}
+            Time left: {hoursTotal > 0 && hoursTotal + ':'}{minutesTotal}:{secondsTotal}
           </Subtitle>
-          <Timer minutes={minutes} seconds={seconds} mode={this.state.mode} />
+          <Timer hours={hours} minutes={minutes} seconds={seconds} mode={this.state.mode} />
         </Header>
         <div>
           {timerOn === false &&

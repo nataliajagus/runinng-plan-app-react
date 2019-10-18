@@ -61,7 +61,7 @@ componentDidUpdate() {
         <h3>or create your own exercise:</h3>
         <Form submitFn={this.createExercise} state={this.state} />
 
-        {this.state.rounds != 0 && (this.state.runMinutes + this.state.runSeconds + this.state.walkMinutes + this.state.walkSeconds) != 0 && ( <Link  to={{ pathname: '/exercise', state: { run: ((this.state.runMinutes * 60) + this.state.runSeconds) * 1000, walk: ((this.state.walkMinutes * 60) + this.state.walkSeconds) * 1000, rounds: this.state.rounds, week: 0 } }}><Button htmlType="submit" submit>Continue</Button></Link> )}
+        {this.state.rounds != 0 && (this.state.runMinutes + this.state.runSeconds + this.state.walkMinutes + this.state.walkSeconds) != 0 && ( <Link  to={{ pathname: '/exercise', state: { run: (this.state.runMinutes * 60 * 1000) + (this.state.runSeconds * 1000), walk: (this.state.walkMinutes * 60 * 1000) + (this.state.walkSeconds * 1000), rounds: this.state.rounds, week: 0 } }}><Button htmlType="submit" submit>Continue</Button></Link> )}
       </Wrapper>
     );
   }

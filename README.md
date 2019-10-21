@@ -23,3 +23,9 @@ Week | Run | Walk | Repeat
 Choose your weeek and start the exercise!
 
 Online version here: https://nataliajagus.github.io/runinng-plan-app-react/
+
+Todo:
+* fix transition between intervals
+* fix app crashing on page refresh
+* modal with congrats after finishing the exercise
+* create login option to track user progress

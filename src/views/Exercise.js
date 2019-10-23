@@ -45,54 +45,74 @@ class Exercise extends Component {
       timerStart: this.state.totalTime
     });
 
-    console.log(this.state);
-
     const run = callback => {
       this.setState({ mode: "run", timerOn: true });
+      // setTimeout is to create delay between running and walking 
+      // so the transition is smoother 
+      // totalTimer is stopped during the transition so the time adds up
+      setTimeout(() => {
+        if (this.state.isRunning) {
+          this.runInterval = setInterval(() => {
+            const newTime = this.state.timerTime - 10;
+            if (newTime >= 0) {
+              this.setState({
+                timerTime: newTime
+              });
+            } else {
+              clearInterval(this.runInterval);
+              clearInterval(this.totalTimer);
+              this.setState({
+                isRunning: false,
+                isWalking: true,
+                timerTime: this.state.walk
+              });
+              if(this.state.totalTime == 0) {
+                this.stopTimer();
+              } else {
+                callback();
+              }
+            }
+          }, 10);
+        }
 
-      if (this.state.isRunning) {
-        this.runInterval = setInterval(() => {
-          const newTime = this.state.timerTime - 10;
-          if (newTime >= 0) {
-            this.setState({
-              timerTime: newTime
-            });
-          } else {
-            clearInterval(this.runInterval);
-            this.setState({
-              isRunning: false,
-              isWalking: true,
-              timerTime: this.state.walk
-            });
-            callback();
-          }
-        }, 10);
-      }
+        this.startTotalTimer();
+      }, 1000);
     };
 
     const walk = () => {
       this.setState({ mode: "walk" });
-
-      if (this.state.isWalking) {
-        this.walkInterval = setInterval(() => {
-          const newTime = this.state.timerTime - 10;
-          if (newTime >= 0) {
-            this.setState({
-              timerTime: newTime
-            });
-          } else {
-            clearInterval(this.walkInterval);
-            this.setState({ timerOn: false });
-            this.setState({ isRunning: true, isWalking: false });
-            if (this.state.totalTime >= 0) {
-              this.setState({ timerTime: this.state.run });
-              run(walk);
+      setTimeout(() => {
+        if (this.state.isWalking) {
+          this.walkInterval = setInterval(() => {
+            const newTime = this.state.timerTime - 10;
+            if (newTime >= 0) {
+              this.setState({
+                timerTime: newTime
+              });
+            } else {
+              clearInterval(this.walkInterval);
+              clearInterval(this.totalTimer);
+              this.setState({ timerOn: false });
+              this.setState({ isRunning: true, isWalking: false });
+              if (this.state.totalTime >= 0) {
+                this.setState({ timerTime: this.state.run });
+                run(walk);
+              } 
+              if (this.state.totalTime == 0) {
+                this.stopTimer();
+              }
             }
-          }
-        }, 10);
-      }
+          }, 10);
+        }
+        this.startTotalTimer();
+      }, 1000);
     };
 
+
+    return this.state.isRunning ? run(walk) : walk();
+  };
+
+  startTotalTimer = () => {
     this.totalTimer = setInterval(() => {
       const newTime = this.state.totalTime - 10;
       if (newTime >= 0) {
@@ -104,8 +124,6 @@ class Exercise extends Component {
         this.setState({ timerOn: false, timerTime: 0 });
       }
     }, 10);
-
-    return this.state.isRunning ? run(walk) : walk();
   };
 
   stopTimer = () => {
@@ -154,17 +172,25 @@ class Exercise extends Component {
     let minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
     let hours = ("0" + Math.floor((timerTime / 3600000) % 60)).slice(-2);
     let minutesTotal = ("0" + Math.floor((totalTime / 60000) % 60)).slice(-2);
-    let secondsTotal = ("0" + (Math.floor((totalTime / 1000) % 60) % 60)).slice(-2);
+    let secondsTotal = ("0" + (Math.floor((totalTime / 1000) % 60) % 60)).slice(
+      -2
+    );
     let hoursTotal = ("0" + Math.floor((totalTime / 3600000) % 60)).slice(-2);
 
     return (
       <Wrapper>
         <Header>
-        {this.state.week > 0 && ( <WeekTitle>Week {this.state.week}</WeekTitle> )}
+          {this.state.week > 0 && <WeekTitle>Week {this.state.week}</WeekTitle>}
           <Subtitle>
-            Time left: {hoursTotal > 0 && hoursTotal + ':'}{minutesTotal}:{secondsTotal}
+            Time left: {hoursTotal > 0 && hoursTotal + ":"}
+            {minutesTotal}:{secondsTotal}
           </Subtitle>
-          <Timer hours={hours} minutes={minutes} seconds={seconds} mode={this.state.mode} />
+          <Timer
+            hours={hours}
+            minutes={minutes}
+            seconds={seconds}
+            mode={this.state.mode}
+          />
         </Header>
         <div>
           {timerOn === false &&

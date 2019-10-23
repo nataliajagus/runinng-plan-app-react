@@ -18,9 +18,7 @@ class Form extends Component {
 
     render() {
 
-        const {rounds, runMinutes, runSeconds, walkMinutes, walkSeconds, isValid} = this.props.state;
-
-        const validationInfo = <p className={styles.formInfo}>Please enter some data to start the exercise :)</p>;
+        const { isValid } = this.props.state;
 
         return (
             <StyledForm onSubmit={this.props.submitFn}>

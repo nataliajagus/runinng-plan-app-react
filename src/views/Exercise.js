@@ -4,6 +4,7 @@ import Header from "components/Header/Header";
 import Wrapper from "components/Wrapper/Wrapper";
 import styled from "styled-components";
 import Button from "components/Button/Button";
+import Modal from "components/Modal/Modal";
 
 const WeekTitle = styled.h2`
   color: #fff;
@@ -111,6 +112,7 @@ class Exercise extends Component {
 
     return this.state.isRunning ? run(walk) : walk();
   };
+
 
   startTotalTimer = () => {
     this.totalTimer = setInterval(() => {

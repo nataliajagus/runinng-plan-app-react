@@ -20,7 +20,7 @@ Week | Run | Walk | Repeat
 10 | 30 min| 0 min | 1 time
 
 
-Choose your weeek and start the exercise!
+Choose your weeek and start the exercise! Or create your own exercise.
 
 Online version here: https://nataliajagus.github.io/runinng-plan-app-react/
 

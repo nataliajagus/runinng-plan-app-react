@@ -1,6 +1,6 @@
 {
   "name": "jogging",
-  "homepage": "https://nataliajagus.github.io/runinng-plan-app-react/",
+  "homepage": "https://running-plan-app.netlify.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

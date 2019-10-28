@@ -7,7 +7,6 @@ import Weeks from 'views/Weeks';
 
 const Root = () => (
   <>
-  
   <GlobalStyle />
   <BrowserRouter>
     <Switch>

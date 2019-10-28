@@ -4,7 +4,7 @@ import WeekButton from "components/WeekButton/WeekButton";
 import AppTitle from "components/AppTitle/AppTitle";
 import Wrapper from "components/Wrapper/Wrapper";
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { settings } from "settings";
 import Form from "components/Form/Form";
 import Button from "components/Button/Button";
@@ -46,17 +46,10 @@ class Weeks extends Component {
     if(!e.target[4].value || (e.target[0].value + e.target[1].value + e.target[2].value + e.target[3].value) == 0) {
         this.setState({ isValid: false })
     } 
+  } 
 
-}
-
-componentDidUpdate() {
-  console.log(this.state);
-}
 
   render() {
-
-    
-
     return (
       <Wrapper>
         <Header>

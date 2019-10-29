@@ -26,3 +26,4 @@ Online version here: https://running-plan-app.netlify.com
 
 Todo:
 * create login option to track user progress
+* add info about run / walk intervals on weeks and exercise page

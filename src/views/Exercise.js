@@ -48,8 +48,7 @@ class Exercise extends Component {
 
     const run = callback => {
       this.setState({ mode: "run", timerOn: true });
-      // setTimeout is to create delay between running and walking 
-      // so the transition is smoother 
+      // setTimeout is to create delay between running and walking so the transition is smoother
       // totalTimer is stopped during the transition so the time adds up
       setTimeout(() => {
         if (this.state.isRunning) {
@@ -67,7 +66,7 @@ class Exercise extends Component {
                 isWalking: true,
                 timerTime: this.state.walk
               });
-              if(this.state.totalTime == 0) {
+              if (this.state.totalTime == 0) {
                 this.stopTimer();
               } else {
                 callback();
@@ -98,7 +97,7 @@ class Exercise extends Component {
               if (this.state.totalTime >= 0) {
                 this.setState({ timerTime: this.state.run });
                 run(walk);
-              } 
+              }
               if (this.state.totalTime == 0) {
                 this.stopTimer();
               }
@@ -109,10 +108,9 @@ class Exercise extends Component {
       }, 1000);
     };
 
-
     return this.state.isRunning ? run(walk) : walk();
+    
   };
-
 
   startTotalTimer = () => {
     this.totalTimer = setInterval(() => {
@@ -181,7 +179,7 @@ class Exercise extends Component {
 
     return (
       <Wrapper>
-       { this.state.totalTime <= 500 && <Modal />}
+        {this.state.totalTime <= 500 && <Modal />}
         <Header>
           {this.state.week > 0 && <WeekTitle>Week {this.state.week}</WeekTitle>}
           <Subtitle>

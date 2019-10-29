@@ -22,8 +22,7 @@ Week | Run | Walk | Repeat
 
 Choose your weeek and start the exercise! Or create your own exercise.
 
-Online version here: https://nataliajagus.github.io/runinng-plan-app-react/
+Online version here: https://running-plan-app.netlify.com
 
 Todo:
-* fix app crashing on page refresh
 * create login option to track user progress

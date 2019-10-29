@@ -181,7 +181,7 @@ class Exercise extends Component {
 
     return (
       <Wrapper>
-       { this.state.totalTime === 0 && <Modal />}
+       
         <Header>
           {this.state.week > 0 && <WeekTitle>Week {this.state.week}</WeekTitle>}
           <Subtitle>

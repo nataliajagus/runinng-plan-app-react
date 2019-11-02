@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Timer from "components/Timer/Timer";
 import Header from "components/Header/Header";
 import Wrapper from "components/Wrapper/Wrapper";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Button from "components/Button/Button";
 import Modal from "components/Modal/Modal";
 
@@ -22,6 +22,15 @@ const Subtitle = styled.p`
   color: #fff;
   text-align: center;
   font-weight: 100;
+
+   ${({small}) => (
+        small && css`
+            font-size: 13px;
+            margin: 0px 0px -10px 0px;
+        `
+    )}
+
+
 `;
 
 class Exercise extends Component {
@@ -109,7 +118,7 @@ class Exercise extends Component {
     };
 
     return this.state.isRunning ? run(walk) : walk();
-    
+
   };
 
   startTotalTimer = () => {
@@ -167,7 +176,7 @@ class Exercise extends Component {
   }
 
   render() {
-    const { timerTime, timerStart, timerOn, totalTime } = this.state;
+    const { timerTime, timerStart, timerOn, totalTime, run, walk, rounds } = this.state;
     let seconds = ("0" + (Math.floor((timerTime / 1000) % 60) % 60)).slice(-2);
     let minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
     let hours = ("0" + Math.floor((timerTime / 3600000) % 60)).slice(-2);
@@ -182,6 +191,9 @@ class Exercise extends Component {
         {this.state.totalTime <= 500 && <Modal />}
         <Header>
           {this.state.week > 0 && <WeekTitle>Week {this.state.week}</WeekTitle>}
+          <Subtitle small>
+          Run: {run >= 60000 ? run / 60000 + " min" : run / 1000 + " sec"} • Walk: {walk >= 60000 ? walk / 60000 + " min" : walk / 1000 + " sec"} • Rounds: {rounds} 
+          </Subtitle>
           <Subtitle>
             Time left: {hoursTotal > 0 && hoursTotal + ":"}
             {minutesTotal}:{secondsTotal}

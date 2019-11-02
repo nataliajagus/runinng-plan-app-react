@@ -146,7 +146,9 @@ class Exercise extends Component {
     if (this.state.timerOn === false) {
       this.setState({
         timerTime: this.state.run,
-        totalTime: (this.state.run + this.state.walk) * this.state.rounds
+        totalTime: (this.state.run + this.state.walk) * this.state.rounds,
+        isRunning: true,
+        mode: "run"
       });
     }
   };

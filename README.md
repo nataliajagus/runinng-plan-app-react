@@ -14,7 +14,7 @@ Week | Run | Walk | Repeat
 4 | 3 min| 3 min | 5 times
 5 | 4 min| 2 min | 5 times
 6 | 5.5 min| 2 min | 4 times
-7 | 7 min| 3 min | 3 times
+7 | 7 min| 3 min | 3 times 
 8 | 8 min| 2 min | 3 times
 9 | 9 min| 1 min | 3 times
 10 | 30 min| 0 min | 1 time
@@ -26,4 +26,3 @@ Online version here: https://running-plan-app.netlify.com
 
 Todo:
 * create login option to track user progress
-* add info about run / walk intervals on weeks and exercise page

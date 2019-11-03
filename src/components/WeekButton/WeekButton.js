@@ -28,9 +28,9 @@ const WeekNumber = styled.span`
 
 
 
-const WeekButton = (props) => (
+const WeekButton = ({ week }) => (
     <Button>
-        <WeekNumber>{props.week}</WeekNumber>
+        <WeekNumber>{week}</WeekNumber>
         week
     </Button>
 )

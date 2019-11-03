@@ -33,13 +33,16 @@ const Mode = styled.span`
   text-align: center;
 `;
  
-const Timer = props => {
+const Timer = ({ hours, minutes, seconds, mode }) => {
+
+  const ifHours = hours > 0 && hours + ':';
+
   return (
     <StyledContainer>
       <Time>
-        {props.hours > 0 && props.hours + ':'}{props.minutes}:{props.seconds}
+        {ifHours}{minutes}:{seconds}
       </Time>
-      <Mode>{props.mode}</Mode>
+      <Mode>{mode}</Mode>
     </StyledContainer>
   );
 };

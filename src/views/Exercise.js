@@ -179,14 +179,14 @@ class Exercise extends Component {
 
   render() {
     const { timerTime, timerStart, timerOn, totalTime, run, walk, rounds } = this.state;
-    let seconds = ("0" + (Math.floor((timerTime / 1000) % 60) % 60)).slice(-2);
-    let minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
-    let hours = ("0" + Math.floor((timerTime / 3600000) % 60)).slice(-2);
-    let minutesTotal = ("0" + Math.floor((totalTime / 60000) % 60)).slice(-2);
-    let secondsTotal = ("0" + (Math.floor((totalTime / 1000) % 60) % 60)).slice(
+    const seconds = ("0" + (Math.floor((timerTime / 1000) % 60) % 60)).slice(-2);
+    const minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
+    const hours = ("0" + Math.floor((timerTime / 3600000) % 60)).slice(-2);
+    const minutesTotal = ("0" + Math.floor((totalTime / 60000) % 60)).slice(-2);
+    const secondsTotal = ("0" + (Math.floor((totalTime / 1000) % 60) % 60)).slice(
       -2
     );
-    let hoursTotal = ("0" + Math.floor((totalTime / 3600000) % 60)).slice(-2);
+    const hoursTotal = ("0" + Math.floor((totalTime / 3600000) % 60)).slice(-2);
 
     return (
       <Wrapper>

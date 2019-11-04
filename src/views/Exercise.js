@@ -188,13 +188,28 @@ class Exercise extends Component {
     );
     const hoursTotal = ("0" + Math.floor((totalTime / 3600000) % 60)).slice(-2);
 
+    const runRoundSeconds = ((Math.floor((run / 1000) % 60) % 60));
+    const runRoundMinutes = (Math.floor((run / 60000) % 60));
+    const runRoundHours = (Math.floor((run / 3600000) % 60));
+
+    const walkRoundSeconds = ((Math.floor((walk / 1000) % 60) % 60));
+    const walkRoundMinutes = (Math.floor((walk / 60000) % 60));
+    const walkRoundHours = (Math.floor((walk / 3600000) % 60));
+
+    const ifRunningHours = runRoundHours > 0 && runRoundHours + ' h';
+    const ifRunningMinutes = runRoundMinutes > 0 && runRoundMinutes + ' min';
+    const ifRunningSeconds = runRoundSeconds > 0 && runRoundSeconds + ' sec';
+    const ifWalkingHours = walkRoundHours > 0 && walkRoundHours + ' h';
+    const ifWalkingMinutes = walkRoundMinutes > 0 && walkRoundMinutes + ' min';
+    const ifWalkingSeconds = walkRoundSeconds > 0 && walkRoundSeconds + ' sec';
+
     return (
       <Wrapper>
         {this.state.totalTime <= 500 && <Modal />}
         <Header>
           {this.state.week > 0 && <WeekTitle>Week {this.state.week}</WeekTitle>}
           <Subtitle small>
-          Run: {run >= 60000 ? run / 60000 + " min" : run / 1000 + " sec"} • Walk: {walk >= 60000 ? walk / 60000 + " min" : walk / 1000 + " sec"} • Rounds: {rounds} 
+          <strong>Running:</strong> {ifRunningHours} {ifRunningMinutes} {ifRunningSeconds} <strong>Walking:</strong> {ifWalkingHours} {ifWalkingMinutes} {ifWalkingSeconds} <strong>Rounds:</strong> {rounds}
           </Subtitle>
           <Subtitle>
             Time left: {hoursTotal > 0 && hoursTotal + ":"}

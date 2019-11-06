@@ -1,7 +1,6 @@
 import React from "react";
 import ValidationInfo from "components/ValidationInfo/ValidationInfo";
 import styled from "styled-components";
-import styles from "components/Form/Form.module.css";
 import Button from "components/Button/Button";
 
 const StyledForm = styled.form`
@@ -11,74 +10,98 @@ const StyledForm = styled.form`
   flex-direction: column;
 `;
 
+const StyledInput = styled.input`
+  width: 80px;
+  height: 80px;
+  border-radius: 15px;
+  border: 1px solid #1F5AAC;
+  font-size: 30px;
+  font-weight: 900;
+
+  ::placeholder,
+  ::-webkit-input-placegholder {
+    font-size: 20px;
+    line-height: 80px;
+    font-weight: 300;
+    text-align: center;
+  }
+`;
+
+const OptionWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+`;
+
+
 const Form = props => {
   return (
     <StyledForm onSubmit={props.submitFn}>
-      <h4 className={styles.formHeading}>Running interval</h4>
-      <div className={styles.optionWrapper}>
-        <div className={styles.inputWrapper}>
-          <input
+      <h4>Running interval</h4>
+      <OptionWrapper>
+        <InputWrapper>
+          <StyledInput
             type="number"
             name="runMinutes"
             placeholder="0"
             min="0"
             max="60"
-            className={styles.formInput}
           />
-          <label htmlFor="runMinutes" className={styles.formLabel}>
+          <label htmlFor="runMinutes">
             minutes
           </label>
-        </div>
-        <div className={styles.inputWrapper}>
-          <input
+        </InputWrapper>
+        <InputWrapper>
+          <StyledInput
             type="number"
             name="runSeconds"
             placeholder="0"
             min="0"
             max="60"
-            className={styles.formInput}
           />
-          <label htmlFor="runSeconds" className={styles.formLabel}>
+          <label htmlFor="runSeconds">
             seconds
           </label>
-        </div>
-      </div>
-      <h4 className={styles.formHeading}>Walking interval</h4>
-      <div className={styles.optionWrapper}>
-        <div className={styles.inputWrapper}>
-          <input
+        </InputWrapper>
+      </OptionWrapper>
+      <h4>Walking interval</h4>
+      <OptionWrapper>
+        <InputWrapper>
+          <StyledInput
             type="number"
             name="walkMinutes"
             placeholder="0"
             min="0"
             max="60"
-            className={styles.formInput}
           />
-          <label htmlFor="walkMinutes" className={styles.formLabel}>
+          <label htmlFor="walkMinutes">
             minutes
           </label>
-        </div>
-        <div className={styles.inputWrapper}>
-          <input
+        </InputWrapper>
+        <InputWrapper>
+          <StyledInput
             type="number"
             name="walkSeconds"
             placeholder="0"
             min="0"
             max="60"
-            className={styles.formInput}
           />
-          <label htmlFor="walkSeconds" className={styles.formLabel}>
+          <label htmlFor="walkSeconds">
             seconds
           </label>
-        </div>
-      </div>
+        </InputWrapper>
+      </OptionWrapper>
 
-      <h4 className={styles.formHeading}>Rounds</h4>
-      <input
+      <h4>Rounds</h4>
+      <StyledInput
         type="number"
         name="rounds"
         placeholder="0"
-        className={styles.formInput}
       />
 
       {props.state.isValid === false && (

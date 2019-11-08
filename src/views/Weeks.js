@@ -34,24 +34,10 @@ class Weeks extends Component {
     walkMinutes: 0,
     walkSeconds: 0,
     rounds: 0,
-    isValid: null
+    submitted: false
   };
-
-  createExercise = e => {
-    e.preventDefault();
-    this.setState({
-      runMinutes: e.target[0].value,
-      runSeconds: e.target[1].value,
-      walkMinutes: e.target[2].value,
-      walkSeconds: e.target[3].value,
-      rounds: e.target[4].value,
-      isValid: true
-    });
-
-    if (!e.target[4].value || e.target[0].value + e.target[1].value + e.target[2].value + e.target[3].value == 0) {
-      this.setState({ isValid: false });
-    }
-  };
+  
+  createExercise = values => this.setState({...values, submitted: true});
 
   render() {
     return (
@@ -77,7 +63,7 @@ class Weeks extends Component {
           ))}
         </WeeksWrapper>
         <h3>or create your own exercise:</h3>
-        <Form submitFn={this.createExercise} state={this.state} />
+        <Form submitFn={this.createExercise} submitted={this.state.submitted} />
 
         {this.state.rounds != 0 && this.state.runMinutes + this.state.runSeconds + this.state.walkMinutes + this.state.walkSeconds != 0 && (
             <InfoWrapper>

@@ -37,6 +37,12 @@ const Button = styled.button`
         `
     )}
 
+    ${({invisible}) => (
+        invisible && css`
+            display:none;
+        `
+    )}
+
 `;
 
 export default Button;

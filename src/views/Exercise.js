@@ -199,9 +199,12 @@ class Exercise extends Component {
     const ifRunningHours = runRoundHours > 0 && runRoundHours + ' h';
     const ifRunningMinutes = runRoundMinutes > 0 && runRoundMinutes + ' min';
     const ifRunningSeconds = runRoundSeconds > 0 && runRoundSeconds + ' sec';
+    const ifRunning = runRoundHours + runRoundMinutes + runRoundSeconds > 0 && "Running:";
+
     const ifWalkingHours = walkRoundHours > 0 && walkRoundHours + ' h';
     const ifWalkingMinutes = walkRoundMinutes > 0 && walkRoundMinutes + ' min';
     const ifWalkingSeconds = walkRoundSeconds > 0 && walkRoundSeconds + ' sec';
+    const ifWalking = walkRoundHours + walkRoundMinutes + walkRoundSeconds > 0 && "Walking:";
 
     return (
       <Wrapper>
@@ -209,7 +212,7 @@ class Exercise extends Component {
         <Header>
           {this.state.week > 0 && <WeekTitle>Week {this.state.week}</WeekTitle>}
           <Subtitle small>
-          <strong>Running:</strong> {ifRunningHours} {ifRunningMinutes} {ifRunningSeconds} <strong>Walking:</strong> {ifWalkingHours} {ifWalkingMinutes} {ifWalkingSeconds} <strong>Rounds:</strong> {rounds}
+          <strong>{ifRunning}</strong> {ifRunningHours} {ifRunningMinutes} {ifRunningSeconds} <strong>{ifWalking}</strong> {ifWalkingHours} {ifWalkingMinutes} {ifWalkingSeconds} <strong>Rounds:</strong> {rounds}
           </Subtitle>
           <Subtitle>
             Time left: {hoursTotal > 0 && hoursTotal + ":"}

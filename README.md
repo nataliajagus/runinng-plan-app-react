@@ -1,6 +1,6 @@
 # 10 weeks jogging plan app (React Version)
 
-React app for 10 weeks jogging plan app. This is a programme for beginners that want to start jogging :)
+React app for 10 weeks jogging plan app. This is a beginner programme for people who want to start jogging :)
 
 Each week you exercise in different running and walking intervals that sum up to 30 minutes total. 
 For the opimum results do the exercise 3 times a week.
